@@ -53,13 +53,23 @@
     fetch(action, {
       method: 'POST',
       body: formData,
-      headers: {'X-Requested-With': 'XMLHttpRequest'}
+      headers: {
+          'Accept': 'application/json'
+      }
     })
     .then(response => {
+      debugger;
       if( response.ok ) {
-        return response.text();
+        return "OK";
       } else {
-        throw new Error(`${response.status} ${response.statusText} ${response.url}`); 
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            throw new Error( `${data["errors"].map(error => error["message"]).join(", ")}` );
+          } else {
+            throw new Error("Oops! There was a problem submitting your form");
+          }
+        })
+         
       }
     })
     .then(data => {
