@@ -1761,6 +1761,12 @@ h6 {
     color: var(--accent-color);
   }
 
+  .disable-link {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+  }
+
   /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/

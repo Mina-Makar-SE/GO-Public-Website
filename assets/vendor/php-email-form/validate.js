@@ -58,7 +58,6 @@
       }
     })
     .then(response => {
-      debugger;
       if( response.ok ) {
         return "OK";
       } else {
